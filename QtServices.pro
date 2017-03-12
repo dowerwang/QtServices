@@ -5,9 +5,12 @@
 #-------------------------------------------------
 include(qtservices/qtservice.pri)
 
-QT += core network
+QT += core network sql
 QT -= gui
-
+MOC_DIR=temp/moc
+RCC_DIR=temp/rcc
+UI_DIR=temp/ui
+OBJECTS_DIR=temp/obj
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = QtServices
@@ -16,7 +19,7 @@ CONFIG += c++11
 CONFIG += console
 CONFIG -= app_bundle
 CONFIG += c++11
-
+LIBS += -Ldll -lws2_32
 TEMPLATE = app
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -40,7 +43,10 @@ SOURCES += main.cpp \
     QsLog/QsLog.cpp \
     mytcpserver.cpp \
     AppConfig/myapp.cpp \
-    CycleBuffer/CCycleBuffer.cpp
+    CycleBuffer/CCycleBuffer.cpp \
+    processclass.cpp \
+    mainprocess.cpp \
+    Para/paranetwork.cpp
 HEADERS  += \
     mywinservice.h \
     QsLog/QsLogLevel.h \
@@ -53,7 +59,11 @@ HEADERS  += \
     mytcpserver.h \
     AppConfig/myapp.h \
     myhelper.h \
-    CycleBuffer/CCycleBuffer.h
+    CycleBuffer/CCycleBuffer.h \
+    processclass.h \
+    mainprocess.h \
+    Para/paranetwork.h
+
 
 
 

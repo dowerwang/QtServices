@@ -6,7 +6,8 @@
 #include "../QsLog/QsLog.h"
 #include "../QsLog/QsLogDest.h"
 #include "../QsLog/QsLogLevel.h"
-#include "./AppConfig/myapp.h"
+
+#include "./mainprocess.h"
 class MyWinService: public QtService<QCoreApplication>
 {
 public:
@@ -19,7 +20,7 @@ public:
     void resume();
     void stop();
     QString ExecPath();
-    MyTcpServer *myTcpServer;
+    MainProcess *mainProcess;
 };
 
 #endif // MYWINSERVICE_H

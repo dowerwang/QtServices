@@ -24,10 +24,9 @@ public:
     void pause();
     void resume();
 private slots:
-    void readClient();
-    void discardClient();
+signals:
+    void ClientConnect(int clientID,QTcpSocket *client);
 private:
-    CCycleBuffer* comBuffer;
     bool disabled;
 };
 

@@ -1,5 +1,6 @@
 #include "mywinservice.h"
 
+
 MyWinService::MyWinService(int argc, char* argv[])
 : QtService<QCoreApplication>(argc, argv, "My Windows Service")
 {
@@ -16,12 +17,8 @@ void MyWinService::start()
     QLOG_INFO()<<"services start;";
 
     QCoreApplication *app = application();
-    QLOG_INFO()<<"Listen port:"+myApp::TcpPort;
-    myTcpServer = new MyTcpServer(myApp::TcpPort.toInt(), app);
-    if (!myTcpServer->isListening()) {
-        QLOG_INFO()<<QString("Failed to bind to port %1").arg(myTcpServer->serverPort());
-        app->quit();
-    }
+
+    mainProcess = new MainProcess(app);
 
 }
 
@@ -33,11 +30,11 @@ void MyWinService::stop()
 void MyWinService::pause()
 {
     QLOG_INFO()<<"services pause;";
-    myTcpServer->pause();
+    //myTcpServer->pause();
 }
 
 void MyWinService::resume()
 {
     QLOG_INFO()<<"services resume;";
-    myTcpServer->resume();
+    //myTcpServer->resume();
 }
